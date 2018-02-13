@@ -1,0 +1,13 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+exec 2> /tmp/rc.local.log
+exec 1>&2
+set -x
+
+# sleep 10
+touch /just_testing
+/usr/local/bin/import-certs.sh
+
+exit 0
+

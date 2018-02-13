@@ -53,4 +53,14 @@ RUN curl -kLOH "Cookie: oraclelicense=accept-securebackup-cookie" \
            /opt/jre/lib/amd64/libjavafx*.so \
            /opt/jre/lib/amd64/libjfx*.so
 
+RUN mkdir -p /usr/local/bin
+ADD scripts/import-certs.sh /usr/local/bin
+RUN chmod u+x /usr/local/bin/import-certs.sh
+
+ADD scripts/rc.local /etc/rc.local
+RUN chmod 775 /etc/rc.local
+
+ADD scripts/S99certs /etc/rc.d/S99certs
+RUN chmod 777 /etc/rc.d/S99certs
+
 CMD [ "java", "-version" ]
