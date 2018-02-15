@@ -27,10 +27,14 @@ docker run -it --rm mcreations/openwrt-java
 This imaged has a preinstalled JNA library from [here](https://github.com/twall/jna).
 JNA_VERSION environment varibale chooses which release of JNA should install on build.
 
+### Automatic import of certificates
+This image's default entrypoint imports any certificates it can find in the /data/ssl directory to the running container's keystore.
+
 ### Test
 #### Test JVM
 The script [list-system-properties.sh](test/list-system-properties.sh)
 shows how to pass a classpath with `-v` to the container.
 #### Test JNA
 The script [jna-c-printf-test.sh](test/jna-c-printf-test.sh) tests JNA by mapping the printf function from the standard C library and calling it.
-
+#### Test import certificates
+The script [test-import-certs.sh](test/test-import-certs.sh) tests the functionality of automatically importing the certificates in [test/sample-certs](test/sample-certs)
